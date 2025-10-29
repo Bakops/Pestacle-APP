@@ -8,7 +8,7 @@ export function Header() {
       <div className="container mx-auto flex h-14 items-center justify-between px-6">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold tracking-tight">THÉÂTRE+</span>
+           <img src="LOGO_PESTACLE.png" className="w-[8rem]" alt="" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
