@@ -3,7 +3,7 @@ import { Play } from "lucide-react"
 
 export function HeroSection() {
     return (
-        <section className="relative h-[85vh] min-h-[600px] overflow-hidden bg-black">
+        <section className="relative h-[95vh] min-h-[600px] overflow-hidden bg-black">
             <div className="absolute inset-0">
                 <img
                     src="/Catedrale.png"
@@ -12,7 +12,7 @@ export function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             </div>
-            <div className="relative container mx-auto px-6 h-full flex items-end pb-20">
+            <div className="relative container mx-auto px-6 h-full flex items-center pb-20">
                 <div className="max-w-2xl">
                     <div className="inline-block bg-accent px-4 py-1.5 rounded mb-4">
             <span className="text-xs font-semibold uppercase tracking-wide text-accent-foreground">
