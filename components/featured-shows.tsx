@@ -6,27 +6,27 @@ import { Star } from "lucide-react"
 const featuredShows = [
     {
         id: 1,
-        title: "Pat'Patrouille - Le Spectacle",
-        category: "Spectacle Enfant",
-        image: "/pat.png",
+        title: "Jeux et Lumière à la Cathédrale",
+        category: "Spectacle Visuel",
+        image: "/Catedrale.png",
         rating: 4.9,
         price: "À partir de 25€",
         badge: "Nouveauté",
     },
     {
         id: 2,
-        title: "Jeux et Lumière à la Cathédrale",
+        title: "Les Nuits enchantées d'espoir",
         category: "Spectacle Visuel",
-        image: "/Catedrale.png",
+        image: "/spectacle2.jpg",
         rating: 4.9,
         price: "À partir de 20€",
         badge: "Populaire",
     },
     {
         id: 3,
-        title: "Bulle",
+        title: "Extravaganza Musicale 2024",
         category: "Spectacle Magique",
-        image: "/spectacle1.png",
+        image: "/spectacle4.jpeg",
         rating: 4.8,
         price: "À partir de 30€",
         badge: null,
@@ -35,54 +35,74 @@ const featuredShows = [
 
 export function FeaturedShows() {
     return (
-        <section className="py-16 md:py-24 bg-background">
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between mb-12">
+        <section className="py-16 md:py-24 bg-white">
+            <div className="container mx-auto px-6">
+                <div className="flex items-center justify-between mb-3">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Spectacles à l'affiche</h2>
-                        <p className="text-muted-foreground text-lg">Découvrez nos productions les plus populaires</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-black mb-2">
+                            Spectacles à l'affiche
+                        </h2>
+                        <p className="text-black/60 text-lg">
+                            Découvrez nos productions les plus populaires
+                        </p>
                     </div>
-                    <Button variant="outline" className="hidden md:flex bg-transparent">
+                    <Button 
+                        variant="outline" 
+                        className="hidden md:flex bg-[#6320EE] hover:bg-black hover:text-white text-white border border-black/20 hover:border-black/30 font-medium h-11 px-6 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+                    >
                         Voir tout
                     </Button>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {featuredShows.map((show) => (
                         <Card
                             key={show.id}
-                            className="group overflow-hidden border-border hover:shadow-lg transition-all duration-300"
+                            className="group overflow-hidden border-0 bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                         >
-                            <div className="relative aspect-[3/4] overflow-hidden">
+                            <div className="relative aspect-4/3 overflow-hidden rounded-t-2xl">
                                 <img
                                     src={show.image}
                                     alt={show.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                                 />
                                 {show.badge && (
-                                    <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground">{show.badge}</Badge>
+                                    <Badge className="absolute top-4 right-4 bg-[#6320EE] text-white border-0 font-medium px-3 py-1 rounded-full shadow-lg">
+                                        {show.badge}
+                                    </Badge>
                                 )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                    <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Réserver</Button>
-                                </div>
+                                <div className="absolute inset-0  from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                                
+                                <Button className="absolute bottom-6 left-6 right-6 bg-[#6320EE] hover:bg-[#5218CC] text-white font-medium h-12 rounded-full shadow-lg opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+                                    Réserver maintenant
+                                </Button>
                             </div>
-                            <CardContent className="p-6">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="text-sm text-muted-foreground">{show.category}</span>
-                                    <div className="flex items-center gap-1 ml-auto">
-                                        <Star className="h-4 w-4 fill-accent text-accent" />
-                                        <span className="text-sm font-medium text-foreground">{show.rating}</span>
+
+                            <CardContent className="pr-6 pl-6 bg-white">
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">{show.category}</span>
+                                    <div className="flex items-center gap-1.5 bg-amber-50 px-2.5 py-1 rounded-full">
+                                        <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                                        <span className="text-sm font-semibold text-gray-900">{show.rating}</span>
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
+                                <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#6320EE] transition-colors duration-300">
                                     {show.title}
                                 </h3>
-                                <p className="text-accent font-semibold">{show.price}</p>
+                                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                                    <p className="text-[#6320EE] font-bold text-lg">{show.price}</p>
+                                    <span className="text-xs text-gray-400 font-medium">par personne</span>
+                                </div>
                             </CardContent>
                         </Card>
                     ))}
                 </div>
+
                 <div className="mt-8 text-center md:hidden">
-                    <Button variant="outline" className="w-full bg-transparent">
+                    <Button 
+                        variant="outline" 
+                        className="w-full bg-black/5 hover:bg-black/10 text-black border border-black/20 hover:border-black/30 font-medium h-11 rounded-full transition-all duration-300"
+                    >
                         Voir tous les spectacles
                     </Button>
                 </div>

@@ -83,7 +83,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+              className="text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground cursor-pointer"
             >
               <Search className="h-5 w-5" />
             </Button>
@@ -91,14 +91,14 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+              className="text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground cursor-pointer"
             >
               <User className="h-5 w-5" />
             </Button>
 
             <Link
               href="/reserver"
-              className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1 rounded-md border border-white/10 hover:bg-[#2C2F33] transition shadow-[#6320EE]/30 hover:shadow-lg hover:shadow-[#6320EE]/40 transition-all duration-300 "
+              className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1 rounded-md border border-white/10 hover:bg-[#2C2F33] transition shadow-[#6320EE]/30 hover:shadow-lg hover:shadow-[#6320EE]/40 transition-all duration-300 cursor-pointer"
             >
               <img src="ticket.webp" className="w-5 h-5 rotate-[-10deg]" />
               <span className="text-[12px]">Réserver</span>
@@ -108,7 +108,7 @@ export function Header() {
 
             <Button
               variant="ghost"
-              className="hidden md:inline-flex text-primary-foreground font-medium hover:bg-primary-foreground/10"
+              className="hidden md:inline-flex text-primary-foreground font-medium hover:bg-primary-foreground/10 cursor-pointer"
             >
               FR
             </Button>

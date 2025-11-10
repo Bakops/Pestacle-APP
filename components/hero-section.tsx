@@ -16,7 +16,7 @@ const heroSlides = [
     id: 2,
     image: "/spectacle2.jpg",
     badge: "Nouveau",
-    title: "Les Nuits Enchantées",
+    title: "Les Nuits enchantées d'espoir",
     description: "Plongez dans un univers féérique où la magie opère sous les étoiles."
   },
   {
@@ -49,7 +49,7 @@ export function HeroSection() {
   const slide = heroSlides[currentSlide]
 
   return (
-    <section className="z-30 relative h-[100vh] min-h-[600px] overflow-hidden bg-black">
+    <section className="z-30 relative h-[100vh] min-h-[600px] overflow-hidden bg-black shadow-md">
       <div className="absolute inset-0">
         {heroSlides.map((item, index) => (
           <div
@@ -72,7 +72,7 @@ export function HeroSection() {
         <div className="max-w-2xl">
           <div
             key={`badge-${slide.id}`}
-            className="inline-block bg-[#6320EE] px-4 py-1.5 rounded mb-4 animate-fade-in"
+            className="inline-block bg-[#6320EE] px-4 py-1.5 rounded-full mb-4 animate-fade-in"
           >
             <span className="text-xs font-semibold uppercase tracking-wide text-white">
               {slide.badge}
@@ -81,7 +81,7 @@ export function HeroSection() {
 
           <h1
             key={`title-${slide.id}`}
-            className="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight animate-fade-in-up"
+            className="text-5xl md:text-7xl font-bold  text-white mb-4 leading-tight animate-fade-in-up"
           >
             {slide.title}
           </h1>
@@ -103,7 +103,7 @@ export function HeroSection() {
             <Button
               size="lg"
               variant="outline"
-              className="bg-white/5 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 backdrop-blur-md font-medium px-10 h-11 rounded-full transition-all duration-300 hover:scale-105"
+              className="bg-white/5 hover:bg-white/15 text-white border hover:text-white border-white/20 hover:border-white/40 backdrop-blur-md font-medium px-10 h-11 rounded-full transition-all duration-300 hover:scale-105"
             >
               <Play className="h-4 w-4 mr-2" />
               Bande-annonce
@@ -117,7 +117,7 @@ export function HeroSection() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-1 rounded-full transition-all ${
+            className={`h-1 rounded-full transition-all cursor-pointer ${
               index === currentSlide
                 ? "w-8 bg-[#6320EE]"
                 : "w-6 bg-white/40 hover:bg-white/60"
