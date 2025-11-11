@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card"
+import { CardSpectacle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Star } from "lucide-react"
@@ -56,7 +56,7 @@ export function FeaturedShows() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {featuredShows.map((show) => (
-                        <Card
+                        <CardSpectacle
                             key={show.id}
                             className="group overflow-hidden border-0 bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                         >
@@ -94,7 +94,7 @@ export function FeaturedShows() {
                                     <span className="text-xs text-gray-400 font-medium">par personne</span>
                                 </div>
                             </CardContent>
-                        </Card>
+                        </CardSpectacle>
                     ))}
                 </div>
 

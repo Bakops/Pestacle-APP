@@ -7,7 +7,7 @@ const upcomingShows = [
     id: 1,
     title: "Les Misérables",
     venue: "Théâtre du Châtelet",
-    date: "25 Mars 2025",
+    date: "25 Mars 2026",
     time: "20h00",
     image: "/les-miserables-musical-theater.jpg",
     price: "52€",
@@ -16,7 +16,7 @@ const upcomingShows = [
     id: 2,
     title: "Notre-Dame de Paris",
     venue: "Palais des Congrès",
-    date: "2 Avril 2025",
+    date: "2 Avril 2026",
     time: "19h30",
     image: "/notre-dame-de-paris-musical.jpg",
     price: "58€",
@@ -25,7 +25,7 @@ const upcomingShows = [
     id: 3,
     title: "Hamlet",
     venue: "Comédie-Française",
-    date: "10 Avril 2025",
+    date: "10 Avril 2026",
     time: "20h30",
     image: "/hamlet-shakespeare-theater.jpg",
     price: "42€",
@@ -34,7 +34,7 @@ const upcomingShows = [
     id: 4,
     title: "Chicago",
     venue: "Théâtre Marigny",
-    date: "18 Avril 2025",
+    date: "18 Avril 2026",
     time: "20h00",
     image: "/chicago-musical-theater-jazz.jpg",
     price: "48€",
@@ -43,11 +43,11 @@ const upcomingShows = [
 
 export function UpcomingShows() {
   return (
-    <section className="py-16 md:py-24 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-6">
         <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Prochainement</h2>
-          <p className="text-muted-foreground text-lg">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Prochainement</h2>
+          <p className="text-gray-600 text-lg">
             Réservez dès maintenant vos places pour les spectacles à venir
           </p>
         </div>
@@ -56,39 +56,53 @@ export function UpcomingShows() {
           {upcomingShows.map((show) => (
             <Card
               key={show.id}
-              className="group overflow-hidden border-border hover:shadow-lg transition-all duration-300"
+              className="group overflow-hidden border-0 bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
             >
-              <div className="flex flex-col sm:flex-row">
-                <div className="relative sm:w-2/5 aspect-[16/10] sm:aspect-auto overflow-hidden">
+              <div className="flex flex-col sm:flex-row h-full">
+                <div className="relative sm:w-2/5 aspect-16/10 sm:aspect-auto overflow-hidden sm:rounded-l-2xl">
                   <img
                     src={show.image || "/placeholder.svg"}
                     alt={show.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
+
                 <CardContent className="flex-1 p-6 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#6320EE] transition-colors duration-300">
                       {show.title}
                     </h3>
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <MapPin className="h-4 w-4" />
-                        <span className="text-sm">{show.venue}</span>
+                    <div className="space-y-3 mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#6320EE]/10 transition-colors duration-300">
+                          <MapPin className="h-4 w-4 text-gray-600 group-hover:text-[#6320EE] transition-colors duration-300" />
+                        </div>
+                        <span className="text-sm text-gray-600 font-medium">{show.venue}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
-                        <span className="text-sm">{show.date}</span>
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#6320EE]/10 transition-colors duration-300">
+                          <Calendar className="h-4 w-4 text-gray-600 group-hover:text-[#6320EE] transition-colors duration-300" />
+                        </div>
+                        <span className="text-sm text-gray-600 font-medium">{show.date}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Clock className="h-4 w-4" />
-                        <span className="text-sm">{show.time}</span>
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#6320EE]/10 transition-colors duration-300">
+                          <Clock className="h-4 w-4 text-gray-600 group-hover:text-[#6320EE] transition-colors duration-300" />
+                        </div>
+                        <span className="text-sm text-gray-600 font-medium">{show.time}</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-accent">À partir de {show.price}</span>
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Réserver</Button>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">À partir de</p>
+                      <span className="text-2xl font-bold text-[#6320EE]">{show.price}</span>
+                    </div>
+                    <Button className="bg-[#6320EE] hover:bg-[#000000] text-white font-medium h-11 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
+                      Réserver
+                    </Button>
                   </div>
                 </CardContent>
               </div>
@@ -97,7 +111,11 @@ export function UpcomingShows() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button size="lg" variant="outline" className="px-8 bg-transparent">
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="bg-black/5 hover:bg-black/10 text-black border border-black/20 hover:border-black/30 font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105"
+          >
             Voir tous les spectacles à venir
           </Button>
         </div>

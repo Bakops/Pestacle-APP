@@ -106,7 +106,7 @@ export function Footer() {
                 </div>
                 <div className="border-t border-primary-foreground/20 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-primary-foreground/60 text-sm">© 2025 Pestacle. Tous droits réservés.</p>
+                        <p className="text-primary-foreground/60 text-sm">© 2026 Pestacle. Tous droits réservés.</p>
                         <div className="flex items-center gap-6">
                             <Link href="#" className="text-primary-foreground/60 hover:text-accent transition-colors text-sm">
                                 Mentions légales
