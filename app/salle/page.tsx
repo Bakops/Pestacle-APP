@@ -1,10 +1,10 @@
 import React from 'react';
-import { Header } from '@/components/header';
+import { Headerpage } from '@/components/header-page';
 
-export default function Salle() {
+export default function Promo() {
   return (
     <>
-    <Header />
+    <Headerpage />
     <div>Salle Page</div>
     </>
        

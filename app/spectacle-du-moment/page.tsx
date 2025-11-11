@@ -1,11 +1,11 @@
 import React from 'react';
-import { Header } from '@/components/header';
+import { Headerpage } from '@/components/header-page';
 
-export default function SpectacleDuMoment() {
+export default function Promo() {
   return (
     <>
-    <Header />
-    <div>Promo Page</div>
+    <Headerpage />
+    <div>Spectacle du moment Page</div>
     </>
        
   );
