@@ -11,9 +11,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Théâtre Plus - Réservation de spectacles en ligne",
+  title: "Pestacle - Réservation de spectacles en ligne",
   description: "Réservez vos billets pour les plus beaux spectacles de théâtre en France",
-  generator: "v0.app",
 }
 
 export default function RootLayout({

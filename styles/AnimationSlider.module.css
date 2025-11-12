@@ -1,0 +1,36 @@
+#anime3 {
+  width: 100%;
+  overflow: hidden;
+  height: 2rem;
+  background: linear-gradient(45deg, #ff512f, #dd2476);
+  display: flex;
+  align-items: center;
+}
+
+.messagedefilant div {
+  display: flex;
+  animation: defilement 20s linear infinite;
+  white-space: nowrap;
+}
+
+.messagedefilant span {
+  font-size: 1rem;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  padding: 0 10px;
+}
+
+.anime_transform {
+  font-style: italic;
+  font-weight: bold;
+}
+
+@keyframes defilement {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
