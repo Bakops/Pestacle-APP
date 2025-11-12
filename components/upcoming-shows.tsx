@@ -43,12 +43,19 @@ const upcomingShows = [
 
 export function UpcomingShows() {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="py-16 md:py-24 bg-[#6320EE]">
       <div className="container mx-auto px-6">
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Prochainement</h2>
-          <p className="text-gray-600 text-lg">
-            Réservez dès maintenant vos places pour les spectacles à venir
+        <div className="text-center mb-12 max-w-4xl mx-auto">
+          <div className="inline-block bg-white px-4 py-1.5 rounded-full mb-4">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#6320EE]">
+              Prochainement
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            Ne manquez pas nos spectacles à venir
+          </h2>
+          <p className="text-white text-lg max-w-3xl mx-auto">
+            Découvrez notre sélection de spectacles à venir et réservez vos places dès maintenant pour vivre des expériences inoubliables.
           </p>
         </div>
 
@@ -114,7 +121,7 @@ export function UpcomingShows() {
           <Button 
             size="lg" 
             variant="outline" 
-            className="bg-black/5 hover:bg-black/10 text-black border border-black/20 hover:border-black/30 font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105"
+            className="bg-[#6320EE] hover:bg-black hover:text-white text-white border font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Voir tous les spectacles à venir
           </Button>

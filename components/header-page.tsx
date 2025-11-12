@@ -47,7 +47,6 @@ export function Headerpage() {
           🎉 Profitez de 20% de réduction sur votre premier achat avec le code #PESTACLE2026 ! 🎉
         </div>
         <div className="container mx-auto flex h-14 items-center justify-between px-6">
-          {/* Menu mobile button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
@@ -124,7 +123,7 @@ export function Headerpage() {
               <Button
                 variant="ghost"
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className="text-primary-foreground font-medium hover:bg-primary-foreground/10 cursor-pointer flex items-center gap-2"
+                className="text-primary-foreground font-medium hover:bg-primary-foreground/10 hover:text-white cursor-pointer flex items-center gap-2"
               >
                 <span>{selectedLanguage.code}</span>
                 <span>{selectedLanguage.flag}</span>

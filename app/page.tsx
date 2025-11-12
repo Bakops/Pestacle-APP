@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/hero-section"
 import { FeaturedShows } from "@/components/featured-shows"
 import { UpcomingShows } from "@/components/upcoming-shows"
 import { Footer } from "@/components/footer"
+import PestacleExplorerSection from "@/components/sections-experience-pestacle"
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
         <HeroSection />
         <FeaturedShows />
         <UpcomingShows />
+        <PestacleExplorerSection />
       </main>
       <Footer />
     </div>
