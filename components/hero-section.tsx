@@ -72,7 +72,7 @@ export function HeroSection() {
         <div className="max-w-2xl">
           <div
             key={`badge-${slide.id}`}
-            className="inline-block bg-[#6320EE] px-4 py-1.5 rounded-full mb-4 animate-fade-in"
+            className="inline-block bg-[#FF6B6B] px-4 py-1.5 rounded-full mb-4 animate-fade-in"
           >
             <span className="text-xs font-semibold uppercase tracking-wide text-white">
               {slide.badge}
@@ -96,7 +96,7 @@ export function HeroSection() {
           <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400">
             <Button
               size="lg"
-              className="bg-[#6320EE] hover:bg-[#5218CC] text-white font-medium px-10 h-11 rounded-full shadow-lg shadow-[#6320EE]/30 hover:shadow-xl hover:shadow-[#6320EE]/40 transition-all duration-300 hover:scale-105"
+              className="bg-[#FF6B6B] hover:bg-[#4ECDC4] text-white font-medium px-10 h-11 rounded-full shadow-lg shadow-[#FF6B6B]/30 hover:shadow-xl hover:shadow-[#FF6B6B]/40 transition-all duration-300 hover:scale-105"
             >
               Réserver
             </Button>
@@ -119,7 +119,7 @@ export function HeroSection() {
             onClick={() => setCurrentSlide(index)}
             className={`h-1 rounded-full transition-all cursor-pointer ${
               index === currentSlide
-                ? "w-8 bg-[#6320EE]"
+                ? "w-8 bg-[#FF6B6B]"
                 : "w-6 bg-white/40 hover:bg-white/60"
             }`}
             aria-label={`Aller au slide ${index + 1}`}

@@ -43,7 +43,7 @@ export function Headerpage() {
       <header
         className="bg-black fixed top-0 z-50 w-full text-primary-foreground transition-all duration-300"
       >
-        <div className="bg-[#6320EE] text-center text-[12px] py-1 font-semibold text-white">
+        <div className="bg-[#FF6B6B] text-center text-[12px] py-1 font-semibold text-white">
           🎉 Profitez de 20% de réduction sur votre premier achat avec le code #PESTACLE2026 ! 🎉
         </div>
         <div className="container mx-auto flex h-14 items-center justify-between px-6">
@@ -60,25 +60,25 @@ export function Headerpage() {
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <Link
               href="/spectacle"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#6320EE] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
             >
               Spectacles
             </Link>
             <Link
               href="/salle"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#6320EE] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
             >
               Salles
             </Link>
             <Link
               href="/spectacle-du-moment"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#6320EE] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
             >
               Pestacle du moment
             </Link>
             <Link
               href="/promo"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#6320EE] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
             >
               Promo
             </Link>
@@ -112,7 +112,7 @@ export function Headerpage() {
 
             <Link
               href="/reserver"
-              className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1 rounded-md border border-white/10 hover:bg-[#2C2F33] shadow-[#6320EE]/30 hover:shadow-lg hover:shadow-[#6320EE]/40 transition-all duration-300 cursor-pointer"
+              className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1 rounded-md border border-white/10 hover:bg-[#2C2F33] shadow-[#FF6B6B]/30 hover:shadow-lg hover:shadow-[#FF6B6B]/40 transition-all duration-300 cursor-pointer"
             >
               <img src="ticket.webp" className="w-5 h-5 rotate-[-10deg]" />
               <span className="text-[12px]">Réserver</span>
@@ -145,7 +145,7 @@ export function Headerpage() {
                         }}
                         className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-colors ${
                           selectedLanguage.code === lang.code
-                            ? "bg-[#6320EE] text-white"
+                            ? "bg-[#FF6B6B] text-white"
                             : "text-gray-900 hover:bg-gray-100"
                         }`}
                       >
@@ -176,27 +176,27 @@ export function Headerpage() {
           <div className="relative w-full max-w-3xl animate-slide-up ">
             <div className="relative">
               <div className="relative">
-                <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-[#6320EE] pointer-events-none" />
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-[#FF6B6B] pointer-events-none" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Rechercher un spectacle, une salle, un artiste..."
-                  className="w-full h-15 pl-16 pr-16 text-lg bg-white rounded-3xl shadow-2xl focus:outline-none focus:ring-4 focus:ring-[#6320EE]/30 text-gray-900 placeholder:text-gray-400"
+                  className="w-full h-15 pl-16 pr-16 text-lg bg-white rounded-3xl shadow-2xl focus:outline-none focus:ring-4 focus:ring-[#FF6B6B]/30 text-gray-900 placeholder:text-gray-400"
                   autoFocus
                 />
                 <button
                   onClick={() => setIsSearchOpen(false)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
                 >
-                  <X className="h-6 w-6 text-[#6320EE]" />
+                  <X className="h-6 w-6 text-[#FF6B6B]" />
                 </button>
               </div>
             </div>
 
             <div className="mt-6 bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-xl">
-              <p className="text-sm font-semibold text-[#6320EE] uppercase tracking-wide mb-4">
+              <p className="text-sm font-semibold text-[#FF6B6B] uppercase tracking-wide mb-4">
                 Recherches populaires
               </p>
               <div className="flex flex-wrap gap-2">
@@ -204,7 +204,7 @@ export function Headerpage() {
                   <button
                     key={suggestion}
                     onClick={() => setSearchQuery(suggestion)}
-                    className="px-4 py-2 bg-gray-100 hover:bg-[#6320EE] hover:text-white text-gray-700 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
+                    className="px-4 py-2 bg-gray-100 hover:bg-[#FF6B6B] hover:text-white text-gray-700 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
                   >
                     {suggestion}
                   </button>
@@ -221,7 +221,7 @@ export function Headerpage() {
           <div className="flex justify-end mb-6">
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-3xl hover:text-[#6320EE] transition"
+              className="text-3xl hover:text-[#FF6B6B] transition"
             >
               ×
             </button>
@@ -242,7 +242,7 @@ export function Headerpage() {
             </Link>
             <Link
               href="/reserver"
-              className="bg-[#6320EE] text-white px-4 py-2 rounded-full text-lg mt-4 text-center"
+              className="bg-[#FF6B6B] text-white px-4 py-2 rounded-full text-lg mt-4 text-center"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Réserver
@@ -257,7 +257,7 @@ export function Headerpage() {
                     onClick={() => setSelectedLanguage(lang)}
                     className={`px-4 py-3 rounded-full flex items-center gap-3 transition-all ${
                       selectedLanguage.code === lang.code
-                        ? "bg-[#6320EE] text-white"
+                        ? "bg-[#FF6B6B] text-white"
                         : "bg-white/10 text-white hover:bg-white/20"
                     }`}
                   >

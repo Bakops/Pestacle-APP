@@ -43,11 +43,11 @@ const upcomingShows = [
 
 export function UpcomingShows() {
   return (
-    <section className="py-16 md:py-24 bg-[#6320EE]">
+    <section className="py-16 md:py-24 bg-[#FF6B6B]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12 max-w-4xl mx-auto">
           <div className="inline-block bg-white px-4 py-1.5 rounded-full mb-4">
-            <span className="text-xs font-semibold uppercase tracking-wide text-[#6320EE]">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#FF6B6B]">
               Prochainement
             </span>
           </div>
@@ -77,25 +77,25 @@ export function UpcomingShows() {
 
                 <CardContent className="flex-1 p-6 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#6320EE] transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#4ECDC4] transition-colors duration-300">
                       {show.title}
                     </h3>
                     <div className="space-y-3 mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#6320EE]/10 transition-colors duration-300">
-                          <MapPin className="h-4 w-4 text-gray-600 group-hover:text-[#6320EE] transition-colors duration-300" />
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#4ECDC4]/10 transition-colors duration-300">
+                          <MapPin className="h-4 w-4 text-gray-600 group-hover:text-[#4ECDC4] transition-colors duration-300" />
                         </div>
                         <span className="text-sm text-gray-600 font-medium">{show.venue}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#6320EE]/10 transition-colors duration-300">
-                          <Calendar className="h-4 w-4 text-gray-600 group-hover:text-[#6320EE] transition-colors duration-300" />
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#4ECDC4]/10 transition-colors duration-300">
+                          <Calendar className="h-4 w-4 text-gray-600 group-hover:text-[#4ECDC4] transition-colors duration-300" />
                         </div>
                         <span className="text-sm text-gray-600 font-medium">{show.date}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#6320EE]/10 transition-colors duration-300">
-                          <Clock className="h-4 w-4 text-gray-600 group-hover:text-[#6320EE] transition-colors duration-300" />
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#4ECDC4]/10 transition-colors duration-300">
+                          <Clock className="h-4 w-4 text-gray-600 group-hover:text-[#4ECDC4] transition-colors duration-300" />
                         </div>
                         <span className="text-sm text-gray-600 font-medium">{show.time}</span>
                       </div>
@@ -105,9 +105,9 @@ export function UpcomingShows() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div>
                       <p className="text-xs text-gray-500 mb-1">À partir de</p>
-                      <span className="text-2xl font-bold text-[#6320EE]">{show.price}</span>
+                      <span className="text-2xl font-bold text-[#FF6B6B]">{show.price}</span>
                     </div>
-                    <Button className="bg-[#6320EE] hover:bg-[#000000] text-white font-medium h-11 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <Button className="bg-[#4ECDC4] hover:bg-[#000000] text-white font-medium h-11 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
                       Réserver
                     </Button>
                   </div>
@@ -120,8 +120,8 @@ export function UpcomingShows() {
         <div className="mt-12 text-center">
           <Button 
             size="lg" 
-            variant="outline" 
-            className="bg-[#6320EE] hover:bg-black hover:text-white text-white border font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+            
+            className="bg-[#4ECDC4] hover:bg-black hover:text-white text-white font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Voir tous les spectacles à venir
           </Button>

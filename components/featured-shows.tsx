@@ -9,6 +9,7 @@ const featuredShows = [
         title: "Jeux et Lumière à la Cathédrale",
         category: "Spectacle Visuel",
         image: "/Catedrale.png",
+        description: "Un spectacle visuel époustouflant qui illumine la cathédrale avec des jeux de lumière et des couleurs magiques.",
         rating: 4.9,
         price: "À partir de 25€",
         badge: "Nouveauté",
@@ -18,6 +19,7 @@ const featuredShows = [
         title: "Les Nuits enchantées d'espoir",
         category: "Spectacle Visuel",
         image: "/spectacle2.jpg",
+        description: "Plongez dans un univers féérique où la magie opère sous les étoiles avec des performances envoûtantes.",
         rating: 4.9,
         price: "À partir de 20€",
         badge: "Populaire",
@@ -27,6 +29,7 @@ const featuredShows = [
         title: "Extravaganza Musicale 2024",
         category: "Spectacle Magique",
         image: "/spectacle4.jpeg",
+        description: "Un spectacle captivant mêlant musique, danse et effets spéciaux pour une expérience inoubliable.",
         rating: 4.8,
         price: "À partir de 30€",
         badge: null,
@@ -48,7 +51,7 @@ export function FeaturedShows() {
                     </div>
                     <Button 
                         variant="outline" 
-                        className="hidden md:flex bg-[#6320EE] hover:bg-black hover:text-white text-white border border-black/20 hover:border-black/30 font-medium h-11 px-6 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+                        className="hidden md:flex bg-[#FF6B6B] hover:bg-black hover:text-white text-white border border-black/20 hover:border-black/30 font-medium h-11 px-6 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
                     >
                         Voir tout
                     </Button>
@@ -67,30 +70,31 @@ export function FeaturedShows() {
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                                 />
                                 {show.badge && (
-                                    <Badge className="absolute top-4 right-4 bg-[#6320EE] text-white border-0 font-medium px-3 py-1 rounded-full shadow-lg">
+                                    <Badge className="absolute top-4 right-4 bg-[#FF6B6B] text-white border-0 font-medium px-3 py-1 rounded-full shadow-lg">
                                         {show.badge}
                                     </Badge>
                                 )}
                                 <div className="absolute inset-0  from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                                 
-                                <Button className="absolute bottom-6 left-6 right-6 bg-[#6320EE] hover:bg-[#5218CC] text-white font-medium h-12 rounded-full shadow-lg opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+                                <Button className="absolute bottom-6 left-6 right-6 bg-[#FF6B6B] hover:bg-[#4ECDC4] text-white font-medium h-12 rounded-full shadow-lg opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:-translate-y-2 cursor-pointer">
                                     Réserver maintenant
                                 </Button>
                             </div>
 
                             <CardContent className="pr-6 pl-6 bg-white">
                                 <div className="flex items-center justify-between mb-3">
-                                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">{show.category}</span>
+                                    <span className="text-sm font-bold text-gray-500 uppercase tracking-wide">{show.category}</span>
                                     <div className="flex items-center gap-1.5 bg-amber-50 px-2.5 py-1 rounded-full">
                                         <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
                                         <span className="text-sm font-semibold text-gray-900">{show.rating}</span>
                                     </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#6320EE] transition-colors duration-300">
+                                <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#FF6B6B] transition-colors duration-300">
                                     {show.title}
                                 </h3>
+                                <p className="text-gray-600 mb-4 line-clamp-3">{show.description}</p>
                                 <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                                    <p className="text-[#6320EE] font-bold text-lg">{show.price}</p>
+                                    <p className="text-[#FF6B6B] font-bold text-lg">{show.price}</p>
                                     <span className="text-xs text-gray-400 font-medium">par personne</span>
                                 </div>
                             </CardContent>

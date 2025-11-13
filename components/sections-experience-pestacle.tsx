@@ -38,8 +38,8 @@ export default function PestacleExplorerSection() {
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12 max-w-4xl mx-auto">
-          <div className="inline-block bg-[#6320EE]/10 px-4 py-1.5 rounded-full mb-4">
-            <span className="text-xs font-semibold uppercase tracking-wide text-[#6320EE]">
+          <div className="inline-block bg-[#FF6B6B]/10 px-4 py-1.5 rounded-full mb-4">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#FF6B6B]">
               Pestacle chez vous
             </span>
           </div>
@@ -67,7 +67,7 @@ export default function PestacleExplorerSection() {
                     />
                     
                     {movie.badge && (
-                      <div className="absolute top-4 right-4 bg-[#6320EE] text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg z-20">
+                      <div className="absolute top-4 right-4 bg-[#FF6B6B] text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg z-20">
                         {movie.badge}
                       </div>
                     )}
@@ -76,7 +76,7 @@ export default function PestacleExplorerSection() {
                     
                     {/* BOUTON PLAY */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="w-16 h-16 bg-[#6320EE] backdrop-blur-sm rounded-full flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                      <div className="w-16 h-16 bg-[#FF6B6B] backdrop-blur-sm rounded-full flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
                         <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-white border-b-8 border-b-transparent ml-1" />
                       </div>
                     </div>
@@ -99,7 +99,7 @@ export default function PestacleExplorerSection() {
         <div className="text-center">
           <Button
             size="lg"
-            className="bg-[#6320EE] hover:bg-black hover:text-white text-white border font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+            className="bg-[#FF6B6B] hover:bg-black hover:text-white text-white border font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Découvrir tous les spectacles
         </Button>
