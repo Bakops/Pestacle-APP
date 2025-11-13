@@ -44,7 +44,7 @@ export function Header() {
     if (e.key === 'Enter') {
       handleSearch()
     }
-  }
+  } 
 
   return ( 
     <>
