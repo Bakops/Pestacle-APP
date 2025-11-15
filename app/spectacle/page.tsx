@@ -10,7 +10,6 @@ export default function SpectaclePage() {
           <div className="absolute inset-0 bg-black/20" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#4ECDC4]/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#4ECDC4]/10 rounded-full blur-3xl" />
-
           <div className="container mx-auto px-6 relative z-10">
             <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4">
               <span className="text-xs font-semibold uppercase tracking-wide">

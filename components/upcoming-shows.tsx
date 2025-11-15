@@ -43,7 +43,9 @@ const upcomingShows = [
 
 export function UpcomingShows() {
   return (
-    <section className="py-16 md:py-24 bg-[#FF6B6B]">
+    <section className="py-16 md:py-24 bg-linear-to-br from-gray-900 to-gray-800">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#4ECDC4]/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#4ECDC4]/10 rounded-full blur-3xl" />
       <div className="container mx-auto px-6">
         <div className="text-center mb-12 max-w-4xl mx-auto">
           <div className="inline-block bg-white px-4 py-1.5 rounded-full mb-4">
@@ -121,7 +123,7 @@ export function UpcomingShows() {
           <Button 
             size="lg" 
             
-            className="bg-[#4ECDC4] hover:bg-black hover:text-white text-white font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+            className="bg-[#4ECDC4] hover:bg-[#FF6B6B] hover:text-white text-white font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Voir tous les spectacles à venir
           </Button>

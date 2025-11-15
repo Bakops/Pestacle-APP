@@ -60,25 +60,25 @@ export function Headerpage() {
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <Link
               href="/spectacle"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#4ECDC4] after:transition-all after:duration-300 hover:after:w-full"
             >
               Spectacles
             </Link>
             <Link
               href="/salle"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#4ECDC4] after:transition-all after:duration-300 hover:after:w-full"
             >
               Salles
             </Link>
             <Link
               href="/spectacle-du-moment"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#4ECDC4] after:transition-all after:duration-300 hover:after:w-full"
             >
               Pestacle du moment
             </Link>
             <Link
               href="/promo"
-              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#FF6B6B] after:transition-all after:duration-300 hover:after:w-full"
+              className="relative hover:text-[#FFF] after:content-[''] after:absolute after:left-0 after:bottom-[-3px] after:h-0.5 after:w-0 after:bg-[#4ECDC4] after:transition-all after:duration-300 hover:after:w-full"
             >
               Promo
             </Link>

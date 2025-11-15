@@ -96,14 +96,14 @@ export function HeroSection() {
           <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400">
             <Button
               size="lg"
-              className="bg-[#FF6B6B] hover:bg-[#4ECDC4] text-white font-medium px-10 h-11 rounded-full shadow-lg shadow-[#FF6B6B]/30 hover:shadow-xl hover:shadow-[#FF6B6B]/40 transition-all duration-300 hover:scale-105"
+              className="bg-[#FF6B6B] hover:bg-[#4ECDC4] text-white font-medium px-10 h-11 rounded-full shadow-lg shadow-[#4ECDC4]/30 hover:shadow-xl hover:shadow-[#4ECDC4]/40 transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               Réserver
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="bg-white/5 hover:bg-white/15 text-white border hover:text-white border-white/20 hover:border-white/40 backdrop-blur-md font-medium px-10 h-11 rounded-full transition-all duration-300 hover:scale-105"
+              className="bg-white/5 hover:bg-white/15 text-white border hover:text-white border-white/20 hover:border-white/40 backdrop-blur-md font-medium px-10 h-11 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               <Play className="h-4 w-4 mr-2" />
               Bande-annonce

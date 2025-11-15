@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Search, User, X } from "lucide-react"
 
+
 const languages = [
   { code: "FR", name: "Français", flag: "🇫🇷" },
   { code: "EN", name: "English", flag: "🇬🇧" },
@@ -15,7 +16,8 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false)
+  const [isLanguageOpen, setIsLanguageOpen] =
+   useState(false)
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0])
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -35,6 +37,7 @@ export function Header() {
       document.body.style.overflow = 'unset'
     }
   }, [isSearchOpen])
+
 
   const handleSearch = () => {
     console.log("Recherche:", searchQuery)
@@ -115,6 +118,7 @@ export function Header() {
               <Search className="h-5 w-5" />
             </Button>
 
+            <Link href="/api/auth/login">
             <Button
               variant="ghost"
               size="icon"
@@ -122,6 +126,8 @@ export function Header() {
             >
               <User className="h-5 w-5" />
             </Button>
+            </Link>
+            
 
             <Link
               href="/reserver"
