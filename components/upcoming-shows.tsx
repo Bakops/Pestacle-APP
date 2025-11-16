@@ -74,7 +74,7 @@ export function UpcomingShows() {
                     alt={show.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
                 <CardContent className="flex-1 p-6 flex flex-col justify-between">
@@ -122,7 +122,6 @@ export function UpcomingShows() {
         <div className="mt-12 text-center">
           <Button 
             size="lg" 
-            
             className="bg-[#4ECDC4] hover:bg-[#FF6B6B] hover:text-white text-white font-medium h-12 px-8 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Voir tous les spectacles à venir

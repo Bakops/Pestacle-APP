@@ -1,6 +1,7 @@
 import { Headerpage } from "@/components/header-page"
 
 export default function PromosPage() {
+  
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Headerpage />

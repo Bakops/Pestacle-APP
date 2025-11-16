@@ -34,7 +34,6 @@ export default function SalleCard({ salle }: { salle: Salle }) {
             alt={salle.name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           />
-          {/* Capacity Badge */}
           <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-[#4ECDC4]" />
@@ -43,7 +42,6 @@ export default function SalleCard({ salle }: { salle: Salle }) {
           </div>
         </div>
 
-        {/* Content Section */}
         <div className="md:col-span-3 p-6 md:p-8 flex flex-col justify-between">
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[#4ECDC4] transition-colors duration-300 mb-4">
@@ -62,7 +60,7 @@ export default function SalleCard({ salle }: { salle: Salle }) {
                 className={`rounded-full ml-auto transition-all duration-300 ${
                   copied
                     ? "bg-green-500 hover:bg-green-600"
-                    : "bg-[#4ECDC4] hover:bg-[#5218CC]"
+                    : "bg-[#4ECDC4] hover:bg-[#000000]"
                 }`}
               >
                 {copied ? (
@@ -73,7 +71,6 @@ export default function SalleCard({ salle }: { salle: Salle }) {
               </Button>
             </div>
 
-            {/* Commodités */}
             <div className="mb-6">
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
                 Commodités
@@ -90,7 +87,6 @@ export default function SalleCard({ salle }: { salle: Salle }) {
               </div>
             </div>
 
-            {/* Équipements */}
             <div>
               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
                 Équipements
@@ -106,7 +102,7 @@ export default function SalleCard({ salle }: { salle: Salle }) {
             </div>
           </div>
 
-          <Button className="w-full mt-8 bg-[#4ECDC4] hover:bg-[#5218CC] text-white font-medium h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Button className="w-full mt-8 bg-[#FF6B6B] hover:bg-[#000000] text-white font-medium h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer">
             Voir les spectacles
           </Button>
         </div>
