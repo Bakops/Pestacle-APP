@@ -27,7 +27,6 @@ export default function SalleCard({ salle }: { salle: Salle }) {
   return (
     <Card className="group overflow-hidden border-0 bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
       <div className="grid md:grid-cols-5 gap-0">
-        {/* Image Section */}
         <div className="md:col-span-2 relative overflow-hidden h-64 md:h-auto">
           <img
             src={salle.image || "/placeholder.svg"}
@@ -57,7 +56,7 @@ export default function SalleCard({ salle }: { salle: Salle }) {
               <Button
                 size="icon"
                 onClick={handleCopy}
-                className={`rounded-full ml-auto transition-all duration-300 ${
+                className={`rounded-full ml-auto transition-all duration-300 cursor-pointer ${
                   copied
                     ? "bg-green-500 hover:bg-green-600"
                     : "bg-[#4ECDC4] hover:bg-[#000000]"

@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import styles from "../styles/AnimationSlider.module.css";
 
 export default function PestacleNewsletterSection() {
   return (

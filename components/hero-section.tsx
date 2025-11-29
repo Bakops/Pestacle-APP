@@ -4,36 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Play } from "lucide-react"
 
-const heroSlides = [
-  {
-    id: 1,
-    image: "/Catedrale.png",
-    badge: "Spectacle vedette",
-    title: "Jeux et Lumière à la Cathédrale",
-    description: "Un spectacle visuel époustouflant qui illumine la cathédrale avec des jeux de lumière et des couleurs magiques."
-  },
-  {
-    id: 2,
-    image: "/spectacle2.jpg",
-    badge: "Nouveau",
-    title: "Les Nuits enchantées d'espoir",
-    description: "Plongez dans un univers féérique où la magie opère sous les étoiles."
-  },
-  {
-    id: 3,
-    image: "/spectacle3.jpg",
-    badge: "Populaire",
-    title: "Symphonie de Feu",
-    description: "Une chorégraphie pyrotechnique qui enflamme vos sens et émerveille vos yeux."
-  },
-  {
-    id: 4,
-    image: "/spectacle4.jpeg",
-    badge: "Nouveau",
-    title: "Extravaganza Musicale",
-    description: "Un spectacle captivant mêlant musique, danse et effets spéciaux pour une expérience inoubliable."
-  }
-]
+import heroSlides from "@/data/hero-sections-data"
 
 export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -49,7 +20,7 @@ export function HeroSection() {
   const slide = heroSlides[currentSlide]
 
   return (
-    <section className="z-30 relative h-[100vh] min-h-[600px] overflow-hidden bg-black shadow-md">
+    <section className="z-30 relative h-screen min-h-[600px] overflow-hidden bg-black shadow-md">
       <div className="absolute inset-0">
         {heroSlides.map((item, index) => (
           <div
@@ -65,7 +36,7 @@ export function HeroSection() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
       </div>
 
       <div className="relative container mx-auto px-6 h-full flex items-center pb-20">

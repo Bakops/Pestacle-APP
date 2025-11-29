@@ -8,7 +8,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                     <div>
                         <div className="flex items-center gap-2 mb-4">
-                            <img src="LOGO_PESTACLE.png" className="w-[8rem]" alt="Logo Pestacle" />
+                            <img src="LOGO_PESTACLE.png" className="w-32" alt="Logo Pestacle" />
                         </div>
                         <p className="text-primary-foreground/80 text-sm mb-4">
                             Votre plateforme de réservation en ligne pour les meilleurs spectacles et pestacles en France.
