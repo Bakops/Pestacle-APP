@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Search, User, X } from "lucide-react"
+import { CartButton } from "./CartButton";
 
 const languages = [
   { code: "FR", name: "Français", flag: "🇫🇷" },
@@ -101,7 +102,7 @@ export function Headerpage() {
             >
               <Search className="h-5 w-5" />
             </Button>
-
+<CartButton />
             <Button
               variant="ghost"
               size="icon"
