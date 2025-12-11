@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { CartProvider } from "@/components/layout/CartContextComponent"
+import Script from "next/script"
 import "./globals.css"
 
 
@@ -24,6 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+        <head>
+        <Script 
+          src="https://js.stripe.com/v3/" 
+          strategy="beforeInteractive"
+        />
+      </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
           <CartProvider>
             {children}

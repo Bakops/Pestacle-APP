@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { Trash2, ShoppingBag, Plus, Minus } from "lucide-react";
 
+declare const Stripe: any;
+
 export default function CartPage() {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
   const [loading, setLoading] = useState(false);
@@ -14,26 +16,37 @@ export default function CartPage() {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleCheckout = async () => {
-    setLoading(true);
-    try {
-      const amount = Math.round(total * 100);
-      const res = await fetch(
-        "https://api-spring-l3i0.onrender.com/stripe/checkout?amount=" + amount,
-        {
-          method: "POST",
-        }
-      );
-      const url = await res.text();
-      if (url.startsWith("http")) {
-        window.location.href = url;
-      } else {
-        alert("Erreur lors de la redirection vers Stripe.");
+  setLoading(true);
+  try {
+    const stripe = Stripe("pk_test_51RfdQ7PVmtayri89DfEXu2kTTefpem9yDJlmuotOimDtuSoBsAQx2srtGs8el2G3bXxxdwyCss04rvOoqkD0iFII00bpbHJt1i");
+
+    const response = await fetch(
+      "http://localhost:8080/api/payment/create-checkout-session",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          amount: Math.round(total * 100), // Stripe = centimes
+          currency: "eur"
+        })
       }
-    } catch (e) {
-      alert("Erreur lors de la connexion à Stripe.");
+    );
+    
+    const data = await response.json();
+    
+    const result = await stripe.redirectToCheckout({ 
+      sessionId: data.sessionId 
+    });
+    
+    if (result.error) {
+      alert(result.error.message);
     }
-    setLoading(false);
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Erreur lors de la connexion à Stripe.");
+  }
+  setLoading(false);
+};
 
   const handleRemove = (id: number) => {
     setRemovingId(id);
