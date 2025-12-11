@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { CartProvider } from "@/components/layout/CartContextComponent"
 import "./globals.css"
 
 
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${poppins.variable} font-sans antialiased`}>
-          {children}
+          <CartProvider>
+            {children}
+          </CartProvider>
         <Analytics />
       </body>
     </html>

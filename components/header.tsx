@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Search, User, X } from "lucide-react"
+import { CartButton } from "./CartButton";
 
 
 const languages = [
@@ -117,7 +118,7 @@ export function Header() {
             >
               <Search className="h-5 w-5" />
             </Button>
-
+          <CartButton />
             <Link href="/api/auth/login">
             <Button
               variant="ghost"
@@ -234,7 +235,6 @@ export function Header() {
         </div>
       )}
 
-      {/* MOBILE */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-60 bg-[#0D1821] text-white p-6">
           <div className="flex justify-end mb-6">
