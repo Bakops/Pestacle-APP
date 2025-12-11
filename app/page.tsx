@@ -5,10 +5,7 @@ import { UpcomingShows } from "@/components/upcoming-shows"
 import { Footer } from "@/components/footer"
 import PestacleExplorerSection from "@/components/sections-experience-pestacle"
 import PestacleNewsletterSection from "@/components/sections-newsletter-pestacle"
-import { auth0 } from "@/lib/auth0";
-import LoginButton from "@/components/LoginButton";
-import LogoutButton from "@/components/LogoutButton";
-import Profile from "@/components/Profile";
+
 
 export default function HomePage() {
   

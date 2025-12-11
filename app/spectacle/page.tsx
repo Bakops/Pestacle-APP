@@ -1,7 +1,16 @@
-import SalleCard from "@/components/salle-card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Headerpage } from "@/components/header-page"
+import { getSpectacles } from "@/lib/api"
+import { Spectacle } from "@/lib/types"
 
-export default function SpectaclePage() {
+function formatDate(value: string) {
+  const date = new Date(value)
+  return date.toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" })
+}
+
+export default async function SpectaclePage() {
+  const spectacles = await getSpectacles()
+
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Headerpage />
@@ -13,15 +22,38 @@ export default function SpectaclePage() {
           <div className="container mx-auto px-6 relative z-10">
             <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full mb-4">
               <span className="text-xs font-semibold uppercase tracking-wide">
-                Nos spectacle
+                Nos spectacles
               </span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Nos spectacle</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Nos spectacles</h1>
             <p className="text-xl text-white/90 max-w-2xl">
-              Découvrez les spectacle organiser aus sien de nos salles.
+              Découvrez les spectacles organisés dans nos salles.
             </p>
           </div>
         </div>
+
+        <section className="container mx-auto px-6 py-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {spectacles.map((spectacle: Spectacle) => (
+            <Card key={spectacle.id} className="shadow-lg hover:shadow-xl transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold">{spectacle.titre}</CardTitle>
+                <p className="text-sm text-muted-foreground">{formatDate(spectacle.dateHeure)}</p>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm text-muted-foreground line-clamp-3">
+                  {spectacle.description || "Pas de description pour le moment."}
+                </p>
+                <div className="text-sm">
+                  <p className="font-medium">Lieu: <span className="font-normal">{spectacle.lieu ?? "À venir"}</span></p>
+                  <p className="font-medium">Prix: <span className="font-normal">{spectacle.prixUnitaire.toFixed(2)} €</span></p>
+                  <p className="font-medium">Places dispo: <span className="font-normal">{spectacle.placesDisponibles}</span></p>
+                  <p className="font-medium">Capacité totale: <span className="font-normal">{spectacle.capaciteTotale}</span></p>
+                  <p className="font-medium">Statut: <span className="font-normal">{spectacle.statut}</span></p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </section>
       </main>
     </div>
   )
