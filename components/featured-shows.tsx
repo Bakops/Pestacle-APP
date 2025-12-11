@@ -31,39 +31,39 @@ export function FeaturedShows() {
                             key={show.id}
                             className="group overflow-hidden border-0 bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                         >
-                            <div className="relative aspect-4/3 overflow-hidden rounded-t-2xl">
+                            <div className="relative aspect-video overflow-hidden rounded-t-2xl">
                                 <img
                                     src={show.image}
                                     alt={show.title}
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                                 />
                                 {show.badge && (
-                                    <Badge className="absolute top-4 right-4 bg-[#FF6B6B] text-white border-0 font-medium px-3 py-1 rounded-full shadow-lg">
+                                    <Badge className="absolute top-4 right-4 bg-[#4ECDC4] text-white border-0 font-medium px-3 py-1 rounded-full shadow-lg">
                                         {show.badge}
                                     </Badge>
                                 )}
-                                <div className="absolute inset-0  from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                                <div className="absolute inset-0 from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                                 
-                                <Button className="absolute bottom-6 left-6 right-6 bg-[#FF6B6B] hover:bg-[#4ECDC4] text-white font-medium h-12 rounded-full shadow-lg opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+                                <Button className="absolute bottom-6 left-6 right-6 bg-[#4ECDC4] hover:bg-[#FF6B6B] text-white font-medium h-12 rounded-full shadow-lg opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:-translate-y-2 cursor-pointer">
                                     Réserver maintenant
                                 </Button>
                             </div>
 
-                            <CardContent className="pr-6 pl-6 bg-white">
-                                <div className="flex items-center justify-between mb-3">
-                                    <span className="text-sm font-bold text-gray-500 uppercase tracking-wide">{show.category}</span>
+                            <CardContent className="pr-5 pl-5 pb-4 bg-white">
+                                <div className="flex items-center justify-between mb-2 pt-4">
+                                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">{show.category}</span>
                                     <div className="flex items-center gap-1.5 bg-amber-50 px-2.5 py-1 rounded-full">
                                         <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
                                         <span className="text-sm font-semibold text-gray-900">{show.rating}</span>
                                     </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#FF6B6B] transition-colors duration-300">
+                                <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-[#4ECDC4] transition-colors duration-300">
                                     {show.title}
                                 </h3>
-                                <p className="text-gray-600 mb-4 line-clamp-3">{show.description}</p>
-                                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                                    <p className="text-[#FF6B6B] font-bold text-lg">{show.price}</p>
-                                    <span className="text-xs text-gray-400 font-medium">par personne</span>
+                                <p className="text-xs text-gray-600 mb-3 line-clamp-2 leading-relaxed">{show.description}</p>
+                                <div className="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
+                                    <p className="text-[#4ECDC4] font-bold text-xl">{show.price}</p>
+                                    <span className="text-[10px] text-gray-400 font-medium">par personne</span>
                                 </div>
                             </CardContent>
                         </CardSpectacle>
