@@ -18,7 +18,7 @@ import { Calendar, MapPin, Clock, Users, Star, Heart, Share2, Ticket, ChevronRig
 const spectacleDuMoment = {
     titre: "Le Roi du Rire",
     artiste: "Jean Dupont",
-    image: "/Roi lion.jpg",
+    image: "/Roi du rie.jpg",
     categorie: "Humour",
     description: "Un one-man-show explosif mêlant stand-up, improvisation et interactions avec le public. Une soirée où chaque représentation est unique et inoubliable.",
     duree: "1h30",
@@ -111,6 +111,23 @@ export default function SpectacleDuMomentPage() {
     const closeDates = () => {
         setSelectedSpectacleForDates(null)
         setIsDatesOpen(false)
+    }
+
+    const [confirmationOpen, setConfirmationOpen] = useState(false)
+
+    const openConfirmation = () => setConfirmationOpen(true)
+    const closeConfirmation = () => setConfirmationOpen(false)
+
+    // reserveSeance: if seance provided, select it and open confirmation; otherwise open dates modal
+    const reserveSeance = (seance?: Seance) => {
+        if (seance) {
+            setSelectedSeance(seance)
+            closeDates()
+            openConfirmation()
+        } else {
+            // open dates modal to let user choose
+            openDates(spectacleDuMoment)
+        }
     }
 
     return (
@@ -220,7 +237,7 @@ export default function SpectacleDuMomentPage() {
 
                                     {/* Actions */}
                                     <div className="space-y-3">
-                                        <button className="w-full bg-gradient-to-r from-[#4ECDC4] to-[#5218CC] hover:from-[#5218CC] hover:to-[#4ECDC4] text-white font-semibold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
+                                        <button onClick={() => reserveSeance()} className="w-full bg-gradient-to-r from-[#4ECDC4] to-[#5218CC] hover:from-[#5218CC] hover:to-[#4ECDC4] text-white font-semibold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
                                             <Ticket className="w-5 h-5" />
                                             Réserver maintenant
                                         </button>
@@ -263,13 +280,35 @@ export default function SpectacleDuMomentPage() {
                                             <p className="text-sm text-gray-500">{d.salle} • {d.ville}</p>
                                         </div>
                                         <button
-                                            onClick={() => { setSelectedSeance(d); closeDates(); }}
+                                            onClick={() => reserveSeance(d)}
                                             className="bg-[#4ECDC4] text-white px-4 py-2 rounded-full"
                                         >
                                             Réserver
                                         </button>
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Confirmation modal après sélection d'une séance */}
+                {confirmationOpen && selectedSeance && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black/50" onClick={closeConfirmation} />
+                        <div className="bg-white rounded-2xl shadow-lg max-w-md w-full mx-4 p-6 relative z-10">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-lg font-bold">Confirmation de réservation</h3>
+                                <button onClick={closeConfirmation} className="text-gray-500">Fermer</button>
+                            </div>
+                            <p className="mb-4">Vous êtes sur le point de réserver :</p>
+                            <div className="mb-4 p-4 bg-gray-50 rounded">
+                                <p className="font-semibold">{selectedSeance.date} — {selectedSeance.heure}</p>
+                                <p className="text-sm text-gray-600">{selectedSeance.salle} • {selectedSeance.ville}</p>
+                            </div>
+                            <div className="flex gap-3 justify-end">
+                                <button onClick={() => { setSelectedSeance(null); closeConfirmation(); }} className="px-4 py-2 rounded-full border">Annuler</button>
+                                <button onClick={() => { /* ici appeler API de réservation si existante */ setSelectedSeance(null); closeConfirmation(); alert('Réservation confirmée !'); }} className="px-4 py-2 rounded-full bg-[#4ECDC4] text-white">Confirmer</button>
                             </div>
                         </div>
                     </div>
