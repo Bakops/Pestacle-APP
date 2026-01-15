@@ -5,7 +5,7 @@ export default function LogoutButtonWithModal() {
   const [showModal, setShowModal] = useState(false);
 
   const handleLogout = () => {
-    window.location.href = "/api/auth/logout?returnTo=/";
+    window.location.href = "/auth/logout?returnTo=/";
   };
 
   return (

@@ -168,7 +168,7 @@ export function Header() {
                                                             Mes réservations
                                                         </Link>
                                                         <a
-                                                            href="/api/auth/logout"
+                                                            href="/auth/logout"
                                                             className="flex items-center gap-2 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                                         >
                                                             <LogOut className="h-4 w-4" />
