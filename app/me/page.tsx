@@ -1,4 +1,5 @@
 import LogoutButtonWithModal from "@/components/LogoutButtonWithModal";
+// @ts-ignore
 import { getSession } from "@auth0/nextjs-auth0";
 import Image from "next/image";
 

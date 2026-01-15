@@ -1,42 +1,44 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { CartProvider } from "@/components/layout/CartContextComponent"
-import Script from "next/script"
-import "./globals.css"
-
+import type React from "react";
+import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { CartProvider } from "@/components/layout/CartContextComponent";
+import UserProvider from "@/components/UserProvider";
+import { Auth0Provider } from "@auth0/nextjs-auth0/client";
+import Script from "next/script";
+import "./globals.css";
 
 const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-})
+    subsets: ["latin"],
+    weight: ["300", "400", "500", "600", "700"],
+    variable: "--font-poppins",
+});
 
 export const metadata: Metadata = {
-  title: "Pestacle - Réservation de spectacles en ligne",
-  description: "Réservez vos billets pour les plus beaux spectacles de théâtre en France",
-}
+    title: "Pestacle - Réservation de spectacles en ligne",
+    description: "Réservez vos billets pour les plus beaux spectacles de théâtre en France",
+};
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="fr">
+    return (
+        <html lang="fr">
         <head>
-        <Script 
-          src="https://js.stripe.com/v3/" 
-          strategy="beforeInteractive"
-        />
-      </head>
-      <body className={`${poppins.variable} font-sans antialiased`}>
-          <CartProvider>
-            {children}
-          </CartProvider>
+            <Script src="https://js.stripe.com/v3/" strategy="beforeInteractive" />
+        </head>
+        <body className={`${poppins.variable} font-sans antialiased`}>
+        <Auth0Provider>
+            <UserProvider>
+                <CartProvider>
+                    {children}
+                </CartProvider>
+            </UserProvider>
+        </Auth0Provider>
         <Analytics />
-      </body>
-    </html>
-  )
+        </body>
+        </html>
+    );
 }
