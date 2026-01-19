@@ -12,6 +12,17 @@ export default function SuccessPage() {
 
   useEffect(() => {
     clearCart()
+
+    const sessionId = new URLSearchParams(window.location.search).get("session_id");
+
+    fetch("http://localhost:8080/api/confirmation/send-confirmation", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sessionId: sessionId,
+        email: "adnan.mahboubi03@gmail.com"
+      }),
+    });
   }, [])
 
   return (
@@ -37,10 +48,10 @@ export default function SuccessPage() {
 
         <section className="container mx-auto px-6 py-16 md:py-24">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="relative inline-block mb-8">
+            <div className="relative inline-block mb-8 animate-bounce">
               <div className="absolute inset-0 bg-[#4ECDC4]/20 rounded-full blur-2xl animate-pulse" />
               <div className="relative w-32 h-32 mx-auto bg-linear-to-br from-[#4ECDC4] to-[#44B3B0] rounded-full flex items-center justify-center shadow-2xl">
-                <CheckCircle className="w-20 h-20 text-white animate-bounce" strokeWidth={2.5} />
+                <CheckCircle className="w-20 h-20 text-white" strokeWidth={2.5} />
               </div>
             </div>
 
