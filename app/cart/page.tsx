@@ -12,41 +12,48 @@ export default function CartPage() {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
   const [loading, setLoading] = useState(false);
   const [removingId, setRemovingId] = useState<number | null>(null);
+  const [email, setEmail] = useState("");
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleCheckout = async () => {
-  setLoading(true);
-  try {
-    const stripe = Stripe("pk_test_51RfdQ7PVmtayri89DfEXu2kTTefpem9yDJlmuotOimDtuSoBsAQx2srtGs8el2G3bXxxdwyCss04rvOoqkD0iFII00bpbHJt1i");
-
-    const response = await fetch(
-      "http://localhost:8080/api/payment/create-checkout-session",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          amount: Math.round(total * 100), // Stripe = centimes
-          currency: "eur"
-        })
-      }
-    );
-    
-    const data = await response.json();
-    
-    const result = await stripe.redirectToCheckout({ 
-      sessionId: data.sessionId 
-    });
-    
-    if (result.error) {
-      alert(result.error.message);
+    if (!email.trim()) {
+      alert("Merci de renseigner votre email pour recevoir les billets.");
+      return;
     }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Erreur lors de la connexion à Stripe.");
-  }
-  setLoading(false);
-};
+
+    setLoading(true);
+    try {
+      const stripe = Stripe("pk_test_51RfdQ7PVmtayri89DfEXu2kTTefpem9yDJlmuotOimDtuSoBsAQx2srtGs8el2G3bXxxdwyCss04rvOoqkD0iFII00bpbHJt1i");
+
+      const response = await fetch(
+        "http://localhost:8080/api/payment/create-checkout-session",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: Math.round(total * 100), // Stripe = centimes
+            currency: "eur",
+            email: email.trim(),
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: data.sessionId,
+      });
+
+      if (result.error) {
+        alert(result.error.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Erreur lors de la connexion à Stripe.");
+    }
+    setLoading(false);
+  };
 
   const handleRemove = (id: number) => {
     setRemovingId(id);
@@ -193,6 +200,22 @@ export default function CartPage() {
                         {total.toFixed(2)} €
                       </span>
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-800" htmlFor="checkout-email">
+                      Email pour recevoir vos billets
+                    </label>
+                    <input
+                      id="checkout-email"
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4ECDC4]"
+                      placeholder="vous@example.com"
+                    />
+                    <p className="text-xs text-gray-500">Nous enverrons la confirmation et le QR code à cette adresse.</p>
                   </div>
                 </div>
 

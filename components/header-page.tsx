@@ -169,7 +169,7 @@ export function HeaderPage() {
                                         )}
                                     </>
                                 ) : (
-                                    <Link href="/api/auth/login">
+                                    <Link href="/auth/login">
                                         <Button
                                             variant="ghost"
                                             size="icon"

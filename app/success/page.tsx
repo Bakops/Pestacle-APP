@@ -12,6 +12,15 @@ export default function SuccessPage() {
 
   useEffect(() => {
     clearCart()
+
+    const sessionId = new URLSearchParams(window.location.search).get("session_id");
+    if (sessionId) {
+      fetch("http://localhost:8080/api/payment/send-ticket", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+      });
+    }
   }, [])
 
   return (

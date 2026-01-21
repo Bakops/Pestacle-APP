@@ -120,7 +120,6 @@ export function Header() {
 
                         <CartButton />
 
-                        {/* User Menu */}
                         {!isLoading && (
                             <div className="relative">
                                 {user ? (
