@@ -1,10 +1,10 @@
 import SalleCard from "@/components/salle-card"
-import { Headerpage } from "@/components/header-page"
+import { HeaderPage } from "@/components/header-page"
 
 export default function SpectacleDuMomentPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Headerpage />
+      <HeaderPage />
       <main className="flex-1">
         <div className="mt-20 bg-linear-to-br from-gray-900 to-gray-800 text-white py-16 md:py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-black/20" />

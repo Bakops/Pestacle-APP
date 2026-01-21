@@ -13,9 +13,9 @@ const languages = [
     { code: "DE", name: "Deutsch", flag: "🇩🇪" },
 ]
 
-export function Header() {
+export function HeaderPage() {
     const { user, isLoading } = useUser()
-    const [isScrolled, setIsScrolled] = useState(false)
+   
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isLanguageOpen, setIsLanguageOpen] = useState(false)
@@ -23,14 +23,7 @@ export function Header() {
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0])
     const [searchQuery, setSearchQuery] = useState("")
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
-        }
 
-        window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
 
     useEffect(() => {
         if (isSearchOpen) {
@@ -53,11 +46,7 @@ export function Header() {
     return (
         <>
             <header
-                className={`fixed top-0 z-50 w-full text-primary-foreground transition-all duration-300 ${
-                    isScrolled
-                        ? "bg-[#000000] shadow-[0_2px_10px_rgba(0,0,0,0.25)]"
-                        : "bg-transparent"
-                }`}
+                className={`fixed top-0 z-50 w-full bg-black text-primary-foreground transition-all duration-300`}
             >
                 <div className="bg-[#4ECDC4] text-center text-[12px] py-1 font-semibold text-white">
                     🎉 Profitez de 20% de réduction sur votre premier achat avec le code #PESTACLE2026 ! 🎉

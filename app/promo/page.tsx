@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo } from "react"
-import { Headerpage } from "@/components/header-page"
+import { HeaderPage } from "@/components/header-page"
 import { Footer } from "@/components/footer"
 import PromoCard from "@/components/promo-card"
 import { promotions } from "@/lib/promo-data"
@@ -34,7 +34,7 @@ export default function PromosPage() {
 
     return (
         <div className="min-h-screen flex flex-col bg-white">
-            <Headerpage />
+            <HeaderPage />
             <main className="flex-1">
                 {/* Hero Section */}
                 <div className="mt-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16 md:py-24 relative overflow-hidden">

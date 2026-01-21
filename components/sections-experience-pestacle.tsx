@@ -72,12 +72,13 @@ export default function PestacleExplorerSection() {
                       </div>
                     )}
                     
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
                     {/* BOUTON PLAY */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="w-16 h-16 bg-[#FF6B6B] backdrop-blur-sm rounded-full flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
                         <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-white border-b-8 border-b-transparent ml-1" />
+                        
                       </div>
                     </div>
                   </div>
