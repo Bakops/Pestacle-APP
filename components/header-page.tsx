@@ -90,7 +90,7 @@ export function HeaderPage() {
 
                     <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center">
                         <img
-                            src="LOGO_PESTACLE.png"
+                            src="/LOGO_PESTACLE.png"
                             className="w-32 drop-shadow-[0_4px_10px_rgba(255,255,255,0.1)]"
                             alt="Logo Pestacle"
                         />
@@ -186,7 +186,7 @@ export function HeaderPage() {
                             href="/reserver"
                             className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1 rounded-md border border-white/10 hover:bg-[#2C2F33] shadow-[#FF6B6B]/30 hover:shadow-lg hover:shadow-[#FF6B6B]/40 transition-all duration-300 cursor-pointer"
                         >
-                            <img src="ticket.webp" className="w-5 h-5 rotate-[-10deg]" />
+                            <img src="/ticket.webp" className="w-5 h-5 rotate-[-10deg]" />
                             <span className="text-[12px]">Réserver</span>
                         </Link>
 

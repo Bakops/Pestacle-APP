@@ -1,10 +1,51 @@
+"use client";
+
+import { useState, useEffect } from "react"
 import { CardSpectacle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Star } from "lucide-react"
-import featuredShows from "@/data/featurd-shows-data"
+import { getSpectacles } from "@/lib/api"
+import { Spectacle } from "@/lib/types"
+import Link from "next/link"
 
 export function FeaturedShows() {
+    const [apiSpectacles, setApiSpectacles] = useState<Spectacle[]>([])
+    const [loading, setLoading] = useState(true)
+    const [isHydrated, setIsHydrated] = useState(false)
+
+    useEffect(() => {
+        setIsHydrated(true)
+        const fetchSpectacles = async () => {
+            try {
+                const spectacles = await getSpectacles()
+                setApiSpectacles(spectacles.slice(0, 3)) // Prendre les 3 premiers
+            } catch (error) {
+                console.error("Erreur lors du chargement des spectacles:", error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchSpectacles()
+    }, [])
+
+    // Combiner les spectacles hardcodés avec les spectacles de l'API
+    const allShows = isHydrated
+        ? [
+            ...apiSpectacles.map((spectacle) => ({
+                id: spectacle.id + 100, // ID décalé pour éviter les doublons
+                title: spectacle.titre,
+                category: "Spectacle",
+                image: spectacle.imageUrl || "/placeholder.jpg",
+                description: spectacle.description || "Spectacle à découvrir",
+                rating: 4.7,
+                price: `À partir de ${spectacle.prixUnitaire.toFixed(0)}€`,
+                badge: spectacle.statut === "DISPONIBLE" ? "Disponible" : null,
+                spectacleId: spectacle.id, // Stocker l'ID réel pour la navigation
+            }))
+        ]
+        : []
+
     return (
         <section className="py-16 md:py-24 bg-white">
             <div className="container mx-auto px-6">
@@ -17,18 +58,23 @@ export function FeaturedShows() {
                             Découvrez nos productions les plus populaires
                         </p>
                     </div>
-                    <Button 
-                        variant="outline" 
-                        className="hidden md:flex bg-[#FF6B6B] hover:bg-black hover:text-white text-white border border-black/20 hover:border-black/30 font-medium h-11 px-6 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
-                    >
-                        Voir tout
-                    </Button>
+                    <Link href="/spectacle">
+                        <Button 
+                            variant="outline" 
+                            className="hidden md:flex bg-[#FF6B6B] hover:bg-black hover:text-white text-white border border-black/20 hover:border-black/30 font-medium h-11 px-6 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+                        >
+                            Voir tout
+                        </Button>
+                    </Link>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {featuredShows.map((show) => (
-                        <CardSpectacle
+                    {allShows.map((show) => (
+                        <Link
                             key={show.id}
+                            href={show.spectacleId ? `/spectacle/${show.spectacleId}` : "#"}
+                        >
+                        <CardSpectacle
                             className="group overflow-hidden border-0 bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                         >
                             <div className="relative aspect-video overflow-hidden rounded-t-2xl">
@@ -67,16 +113,19 @@ export function FeaturedShows() {
                                 </div>
                             </CardContent>
                         </CardSpectacle>
+                    </Link>
                     ))}
                 </div>
 
                 <div className="mt-8 text-center md:hidden">
-                    <Button 
-                        variant="outline" 
-                        className="w-full bg-black/5 hover:bg-black/10 text-black border border-black/20 hover:border-black/30 font-medium h-11 rounded-full transition-all duration-300"
-                    >
-                        Voir tous les spectacles
-                    </Button>
+                    <Link href="/spectacle">
+                        <Button 
+                            variant="outline" 
+                            className="w-full bg-black/5 hover:bg-black/10 text-black border border-black/20 hover:border-black/30 font-medium h-11 rounded-full transition-all duration-300"
+                        >
+                            Voir tous les spectacles
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

@@ -1,13 +1,14 @@
-import { Headerpage } from "@/components/header-page"
+import { HeaderPage } from "@/components/header-page"
 import { Footer } from "@/components/footer"
-import { getSpectacleById } from "@/lib/api"
+
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Calendar, Users, Ticket, Clock, Euro } from "lucide-react"
+import { MapPin, Calendar, Users, Ticket, Clock, Euro, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import AddToCartButton from "@/components/AddToCartButton"
+import { getSpectacleById } from "@/lib/api"
 
 interface SpectacleDetailPageProps {
   params: Promise<{
@@ -47,190 +48,198 @@ export default async function SpectacleDetailPage({ params }: SpectacleDetailPag
   const pourcentageOccupation = ((spectacle.capaciteTotale - spectacle.placesDisponibles) / spectacle.capaciteTotale) * 100
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Headerpage />
+    <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <HeaderPage />
       <main className="flex-1">
-        {/* Hero Section */}
-        <div className="mt-20 relative h-[400px] md:h-[500px] overflow-hidden">
+        {/* Hero Section Amélioré */}
+        <div className="mt-20 relative h-[450px] md:h-[550px] overflow-hidden group">
           {spectacle.imageUrl ? (
             <>
               <img
                 src={spectacle.imageUrl}
                 alt={spectacle.titre}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
             </>
           ) : (
-            <div className="w-full h-full bg-linear-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-              <Ticket className="w-32 h-32 text-gray-600" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
+            <div className="w-full h-full bg-linear-to-br from-[#4ECDC4] to-[#44B3B0] flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
+              </div>
+              <Ticket className="w-32 h-32 text-white/80 relative z-10" />
             </div>
           )}
 
-          <div className="absolute bottom-0 left-0 right-0 container mx-auto px-6 pb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Badge
-                className={`border-0 font-medium px-4 py-1.5 rounded-full shadow-lg text-sm ${
-                  spectacle.statut === "DISPONIBLE"
-                    ? "bg-[#4ECDC4] text-white"
-                    : spectacle.statut === "COMPLET"
-                    ? "bg-[#FF6B6B] text-white"
-                    : spectacle.statut === "ANNULE"
-                    ? "bg-gray-500 text-white"
-                    : "bg-blue-500 text-white"
-                }`}
-              >
-                {spectacle.statut}
-              </Badge>
-              <Link href="/spectacle">
-                <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10">
-                  ← Retour aux spectacles
+
+
+          <div className="absolute bottom-0 left-0 right-0 container mx-auto px-6 pb-12">
+            <div className="flex items-end justify-between">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-6 flex-wrap">
+                  <Badge
+                    className={`border-0 font-semibold px-4 py-2 rounded-full shadow-lg text-sm backdrop-blur-md ${
+                      spectacle.statut === "DISPONIBLE"
+                        ? "bg-[#4ECDC4] text-white"
+                        : spectacle.statut === "COMPLET"
+                        ? "bg-[#FF6B6B] text-white"
+                        : spectacle.statut === "ANNULE"
+                        ? "bg-gray-500 text-white"
+                        : "bg-blue-500 text-white"
+                    }`}
+                  >
+                    {spectacle.statut}
+                  </Badge>
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                    <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                    <span className="text-white text-sm font-medium">4.8/5</span>
+                  </div>
+                </div>
+                <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                  {spectacle.titre}
+                </h1>
+                <div className="flex items-center gap-6 text-white/95 flex-wrap">
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+                    <Calendar className="h-5 w-5 text-[#4ECDC4]" />
+                    <span className="font-medium">{formatDate(spectacle.dateHeure)}</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+                    <Clock className="h-5 w-5 text-[#4ECDC4]" />
+                    <span className="font-medium">{formatTime(spectacle.dateHeure)}</span>
+                  </div>
+                </div>
+              </div>
+              <Link href="/spectacle" className="hidden md:block">
+                <Button className="text-black border-2 border-white hover:bg-white/10 bg-white/5 backdrop-blur-md font-semibold transition-all duration-300 hover:scale-105">
+                  ← Retour
                 </Button>
               </Link>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-              {spectacle.titre}
-            </h1>
-            <div className="flex items-center gap-4 text-white/90">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-5 w-5" />
-                <span className="font-medium">{formatDate(spectacle.dateHeure)}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5" />
-                <span className="font-medium">{formatTime(spectacle.dateHeure)}</span>
-              </div>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="container mx-auto px-6 py-12">
-          <div className="grid gap-8 lg:grid-cols-3">
+        <div className="container mx-auto px-6 py-16">
+          <div className="grid gap-12 lg:grid-cols-3">
             {/* Left Column - Details */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-8">
               {/* Description */}
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">Description</h2>
-                  <p className="text-gray-700 leading-relaxed text-lg">
+              <div className="group">
+                <div className="mb-4">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <div className="w-2 h-8 bg-[#4ECDC4] rounded-full" />
+                    À propos
+                  </h2>
+                </div>
+                <div className="bg-gradient-to-br from-[#4ECDC4]/5 to-[#44B3B0]/5 border border-[#4ECDC4]/20 rounded-xl p-8 hover:border-[#4ECDC4]/40 transition-all duration-300">
+                  <p className="text-gray-700 leading-relaxed text-base">
                     {spectacle.description || "Aucune description disponible pour le moment."}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
               {/* Informations pratiques */}
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">Informations pratiques</h2>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 bg-[#4ECDC4]/10 rounded-lg">
-                        <MapPin className="h-5 w-5 text-[#4ECDC4]" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 font-medium">Lieu</p>
-                        <p className="text-gray-900 font-semibold">{spectacle.lieu || "À définir"}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 bg-[#4ECDC4]/10 rounded-lg">
-                        <Calendar className="h-5 w-5 text-[#4ECDC4]" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 font-medium">Date</p>
-                        <p className="text-gray-900 font-semibold">{formatDate(spectacle.dateHeure)}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 bg-[#4ECDC4]/10 rounded-lg">
-                        <Clock className="h-5 w-5 text-[#4ECDC4]" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 font-medium">Heure</p>
-                        <p className="text-gray-900 font-semibold">{formatTime(spectacle.dateHeure)}</p>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                  <div className="w-2 h-8 bg-[#4ECDC4] rounded-full" />
+                  Infos pratiques
+                </h2>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {[
+                    { icon: MapPin, label: "Lieu", value: spectacle.lieu || "À définir", color: "from-blue-500 to-blue-600" },
+                    { icon: Calendar, label: "Date", value: formatDate(spectacle.dateHeure), color: "from-purple-500 to-purple-600" },
+                    { icon: Clock, label: "Heure", value: formatTime(spectacle.dateHeure), color: "from-orange-500 to-orange-600" },
+                    { icon: Users, label: "Capacité", value: `${spectacle.capaciteTotale} places`, color: "from-pink-500 to-pink-600" }
+                  ].map((item, idx) => (
+                    <div key={idx} className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-lg p-5 hover:border-[#4ECDC4] hover:shadow-md transition-all duration-300 group">
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg bg-gradient-to-br ${item.color} text-white`}>
+                          <item.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500 font-semibold uppercase">{item.label}</p>
+                          <p className="text-gray-900 font-bold text-sm">{item.value}</p>
+                        </div>
                       </div>
                     </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 bg-[#4ECDC4]/10 rounded-lg">
-                        <Users className="h-5 w-5 text-[#4ECDC4]" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 font-medium">Capacité</p>
-                        <p className="text-gray-900 font-semibold">
-                          {spectacle.capaciteTotale} places
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Right Column - Booking */}
             <div className="lg:col-span-1">
-              <Card className="border-0 shadow-lg sticky top-24">
-                <CardContent className="p-6">
-                  <div className="text-center mb-6">
+              <Card className="border-0 shadow-2xl sticky top-32 overflow-hidden">
+                <div className="h-1 bg-linear-to-r from-[#4ECDC4] to-[#FF6B6B]" />
+                <CardContent className="p-8">
+                  {/* Prix */}
+                  <div className="text-center mb-8">
+                    <p className="text-gray-500 text-sm font-semibold uppercase tracking-wide mb-3">À partir de</p>
                     <div className="flex items-center justify-center gap-2 mb-2">
-                      <Euro className="h-6 w-6 text-[#4ECDC4]" />
-                      <p className="text-4xl font-bold text-[#4ECDC4]">
-                        {spectacle.prixUnitaire.toFixed(2)} €
+                      <Euro className="h-8 w-8 text-[#4ECDC4]" />
+                      <p className="text-5xl font-bold text-[#4ECDC4]">
+                        {spectacle.prixUnitaire.toFixed(2)}
                       </p>
                     </div>
-                    <p className="text-sm text-gray-500">par personne</p>
+                    <p className="text-gray-600 font-medium">par personne</p>
                   </div>
 
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-8" />
+
                   {/* Disponibilité */}
-                  <div className="mb-6">
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-gray-600 font-medium">Disponibilité</span>
-                      <span className={`font-bold ${
-                        placesRestantes > 50 ? 'text-green-600' : 
-                        placesRestantes > 20 ? 'text-orange-600' : 
-                        'text-red-600'
+                  <div className="mb-8">
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-gray-700 font-semibold">Disponibilité</span>
+                      <span className={`font-bold text-sm px-3 py-1 rounded-full ${
+                        placesRestantes > 50 ? 'bg-green-100 text-green-700' : 
+                        placesRestantes > 20 ? 'bg-orange-100 text-orange-700' : 
+                        'bg-red-100 text-red-700'
                       }`}>
-                        {placesRestantes} places restantes
+                        {placesRestantes} places
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
                       <div 
-                        className={`h-full rounded-full transition-all ${
-                          pourcentageOccupation < 50 ? 'bg-green-500' :
-                          pourcentageOccupation < 80 ? 'bg-orange-500' :
-                          'bg-red-500'
+                        className={`h-full rounded-full transition-all duration-700 shadow-md ${
+                          pourcentageOccupation < 50 ? 'bg-linear-to-r from-green-400 to-green-500' :
+                          pourcentageOccupation < 80 ? 'bg-linear-to-r from-orange-400 to-orange-500' :
+                          'bg-linear-to-r from-red-400 to-red-500'
                         }`}
                         style={{ width: `${pourcentageOccupation}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 mt-1 text-center">
+                    <p className="text-xs text-gray-500 mt-3 text-center font-medium">
                       {Math.round(pourcentageOccupation)}% de remplissage
                     </p>
                   </div>
 
+                  {/* Bouton Ajouter au panier */}
                   <AddToCartButton spectacle={spectacle} />
 
                   {spectacle.statut !== "DISPONIBLE" && (
-                    <p className="text-sm text-gray-500 text-center mt-4">
-                      {spectacle.statut === "COMPLET" && "Ce spectacle est complet"}
-                      {spectacle.statut === "ANNULE" && "Ce spectacle a été annulé"}
-                      {spectacle.statut === "TERMINE" && "Ce spectacle est terminé"}
-                    </p>
+                    <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg text-center">
+                      <p className="text-sm font-medium text-amber-900">
+                        {spectacle.statut === "COMPLET" && "🚫 Ce spectacle est complet"}
+                        {spectacle.statut === "ANNULE" && "⚠️ Ce spectacle a été annulé"}
+                        {spectacle.statut === "TERMINE" && "✓ Ce spectacle est terminé"}
+                      </p>
+                    </div>
                   )}
 
                   {/* Info supplémentaire */}
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                      <Ticket className="h-4 w-4" />
-                      <span>Billet électronique</span>
+                  <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
+                    <div className="flex items-center gap-3 text-sm text-gray-700 hover:text-[#4ECDC4] transition-colors duration-300 cursor-pointer group">
+                      <div className="p-2 bg-[#4ECDC4]/10 rounded-lg group-hover:bg-[#4ECDC4]/20 transition-all">
+                        <Ticket className="h-4 w-4 text-[#4ECDC4]" />
+                      </div>
+                      <span className="font-medium">Billet électronique avec QR code</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Users className="h-4 w-4" />
-                      <span>Réservation instantanée</span>
+                    <div className="flex items-center gap-3 text-sm text-gray-700 hover:text-[#4ECDC4] transition-colors duration-300 cursor-pointer group">
+                      <div className="p-2 bg-[#4ECDC4]/10 rounded-lg group-hover:bg-[#4ECDC4]/20 transition-all">
+                        <Users className="h-4 w-4 text-[#4ECDC4]" />
+                      </div>
+                      <span className="font-medium">Réservation instantanée</span>
                     </div>
                   </div>
                 </CardContent>

@@ -12,3 +12,8 @@ export async function getSpectacles(): Promise<Spectacle[]> {
 
   throw new Error("Réponse inattendue pour /spectacles")
 }
+
+export async function getSpectacleById(id: number): Promise<Spectacle> {
+  const { data } = await api.get<Spectacle>(`/spectacles/${id}`)
+  return data
+}
