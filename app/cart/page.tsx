@@ -4,12 +4,14 @@ import { HeaderPage } from "@/components/header-page";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
 import { useState } from "react";
-import { Trash2, ShoppingBag, Plus, Minus } from "lucide-react";
+import { Trash2, ShoppingBag, Plus, Minus, LogIn } from "lucide-react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 declare const Stripe: any;
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
+  const { user, isLoading: isUserLoading } = useUser();
   const [loading, setLoading] = useState(false);
   const [removingId, setRemovingId] = useState<number | null>(null);
   const [email, setEmail] = useState("");
@@ -17,6 +19,13 @@ export default function CartPage() {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleCheckout = async () => {
+    // Vérifier si l'utilisateur est connecté
+    if (!user && !isUserLoading) {
+      // Rediriger vers la page de connexion avec un callback
+      window.location.href = `/api/auth/login?returnTo=${encodeURIComponent(window.location.pathname)}`;
+      return;
+    }
+
     if (!email.trim()) {
       alert("Merci de renseigner votre email pour recevoir les billets.");
       return;
@@ -185,6 +194,19 @@ export default function CartPage() {
                 </div>
 
                 <div className="bg-linear-to-br from-[#4ECDC4]/10 to-[#4ECDC4]/5 border border-[#4ECDC4]/20 rounded-2xl p-6 mb-8">
+                  {/* Avertissement de connexion */}
+                  {!user && !isUserLoading && (
+                    <div className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <LogIn className="w-5 h-5 text-blue-600" />
+                        <div>
+                          <p className="font-semibold text-blue-900">Connexion requise</p>
+                          <p className="text-sm text-blue-800">Vous devez être connecté pour finaliser votre paiement et récupérer vos billets.</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="space-y-3 mb-6">
                     <div className="flex justify-between text-gray-700">
                       <span>Sous-total</span>
@@ -220,17 +242,27 @@ export default function CartPage() {
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <button
-                    onClick={handleCheckout}
-                    disabled={loading}
-                    className={`flex-1 bg-linear-to-r from-[#4ECDC4] to-[#44B3B0] text-white font-bold py-3 px-6 rounded-full transition-all duration-300 ${
-                      loading
-                        ? "opacity-70 cursor-not-allowed"
-                        : "hover:from-[#44B3B0] hover:to-[#3A9A97] hover:shadow-lg"
-                    }`}
-                  >
-                    {loading ? "Redirection vers Stripe..." : "Procéder au paiement"}
-                  </button>
+                  {!user && !isUserLoading ? (
+                    <Link
+                      href="/auth/login"
+                      className="flex-1 flex items-center justify-center gap-2 bg-linear-to-r from-[#4ECDC4] to-[#44B3B0] text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:from-[#44B3B0] hover:to-[#3A9A97] hover:shadow-lg"
+                    >
+                      
+                      Se connecter pour payer
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={handleCheckout}
+                      disabled={loading}
+                      className={`flex-1 bg-linear-to-r from-[#4ECDC4] to-[#44B3B0] text-white font-bold py-3 px-6 rounded-full transition-all duration-300 ${
+                        loading
+                          ? "opacity-70 cursor-not-allowed"
+                          : "hover:from-[#44B3B0] hover:to-[#3A9A97] hover:shadow-lg"
+                      }`}
+                    >
+                      {loading ? "Redirection vers Stripe..." : "Procéder au paiement"}
+                    </button>
+                  )}
                   <button
                     onClick={clearCart}
                     disabled={loading}

@@ -5,6 +5,8 @@ import { Spectacle } from "@/lib/types"
 import { useCart } from "@/components/layout/CartContextComponent"
 import { ShoppingBag } from "lucide-react"
 import { useState } from "react"
+import { useUser } from "@auth0/nextjs-auth0/client"
+import Link from "next/link"
 
 interface AddToCartButtonProps {
   spectacle: Spectacle
@@ -12,9 +14,16 @@ interface AddToCartButtonProps {
 
 export default function AddToCartButton({ spectacle }: AddToCartButtonProps) {
   const { addToCart } = useCart()
+  const { user, isLoading } = useUser()
   const [isAdded, setIsAdded] = useState(false)
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false)
 
   const handleAddToCart = () => {
+    if (!user && !isLoading) {
+      setShowLoginPrompt(true)
+      return
+    }
+
     addToCart({
       id: spectacle.id,
       name: spectacle.titre,
@@ -29,10 +38,30 @@ export default function AddToCartButton({ spectacle }: AddToCartButtonProps) {
     setTimeout(() => setIsAdded(false), 2000)
   }
 
+  if (showLoginPrompt) {
+    return (
+      <div className="w-full space-y-3">
+        <p className="text-sm text-gray-600 text-center font-medium">Vous devez être connecté pour réserver</p>
+        <Link href="/api/auth/login" className="block">
+          <Button className="w-full h-12 bg-[#4ECDC4] hover:bg-[#3DBDB5] text-white font-semibold rounded-lg">
+            Se connecter pour réserver
+          </Button>
+        </Link>
+        <Button 
+          onClick={() => setShowLoginPrompt(false)}
+          variant="outline"
+          className="w-full h-12 border-2 border-gray-300 text-gray-600 font-semibold rounded-lg"
+        >
+          Annuler
+        </Button>
+      </div>
+    )
+  }
+
   return (
     <Button
       onClick={handleAddToCart}
-      disabled={spectacle.statut !== "DISPONIBLE" || isAdded}
+      disabled={spectacle.statut !== "DISPONIBLE" || isAdded || isLoading}
       className={`w-full h-12 rounded-lg shadow-lg font-semibold text-white flex items-center justify-center gap-2 transition-all ${
         isAdded
           ? "bg-green-500 hover:bg-green-600"

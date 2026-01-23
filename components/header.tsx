@@ -76,7 +76,7 @@ export function Header() {
     return (
         <>
             <header
-                className={`fixed top-0 z-50 w-full text-primary-foreground transition-all duration-300 ${
+                className={`fixed top-0 z-49 w-full text-primary-foreground transition-all duration-300 ${
                     isScrolled
                         ? "bg-[#000000] shadow-[0_2px_10px_rgba(0,0,0,0.25)]"
                         : "bg-transparent"

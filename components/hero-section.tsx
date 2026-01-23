@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Play } from "lucide-react"
+import { Play, X } from "lucide-react"
+import Link from "next/link";
 
 import heroSlides from "@/data/hero-sections-data"
 
 export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [selectedVideo, setSelectedVideo] = useState<{ title: string; videoUrl: string } | null>(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,15 +67,19 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400">
+            <Link href="/spectacle" >
             <Button
               size="lg"
               className="bg-[#FF6B6B] hover:bg-[#4ECDC4] text-white font-medium px-10 h-11 rounded-full shadow-lg shadow-[#4ECDC4]/30 hover:shadow-xl hover:shadow-[#4ECDC4]/40 transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               Réserver
             </Button>
+            </Link>
+          
             <Button
               size="lg"
               variant="outline"
+              onClick={() => setSelectedVideo(slide)}
               className="bg-white/5 hover:bg-white/15 text-white border hover:text-white border-white/20 hover:border-white/40 backdrop-blur-md font-medium px-10 h-11 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               <Play className="h-4 w-4 mr-2" />
@@ -97,6 +103,36 @@ export function HeroSection() {
           />
         ))}
       </div>
+
+      {selectedVideo && (
+        <div className="fixed inset-0 z-[999999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 top-0 left-0">
+          <div className="relative w-full max-w-4xl max-h-[70vh]">
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors z-10"
+              aria-label="Fermer la vidéo"
+            >
+              <X className="h-8 w-8 cursor-pointer" />
+            </button>
+            
+            <div className="relative w-full bg-black rounded-lg overflow-hidden">
+              <div className="aspect-video">
+                <iframe
+                  src={selectedVideo.videoUrl}
+                  title={selectedVideo.title}
+                  className="w-full h-full"
+                  allowFullScreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                />
+              </div>
+            </div>
+            
+            <h3 className="text-white text-lg font-semibold mt-4 text-center">
+              {selectedVideo.title}
+            </h3>
+          </div>
+        </div>
+      )}
 
       <style jsx>{`
         @keyframes fade-in {
