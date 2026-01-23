@@ -5,13 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Search, User, X, LogOut } from "lucide-react"
 import { CartButton } from "./CartButton"
 import { useUser } from '@auth0/nextjs-auth0/client'
+import { getSpectacles } from "@/lib/api"
+import { Spectacle } from "@/lib/types"
 
-const languages = [
-    { code: "FR", name: "Français", flag: "🇫🇷" },
-    { code: "EN", name: "English", flag: "🇬🇧" },
-    { code: "ES", name: "Español", flag: "🇪🇸" },
-    { code: "DE", name: "Deutsch", flag: "🇩🇪" },
-]
 
 export function HeaderPage() {
     const { user, isLoading } = useUser()
@@ -20,8 +16,10 @@ export function HeaderPage() {
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isLanguageOpen, setIsLanguageOpen] = useState(false)
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-    const [selectedLanguage, setSelectedLanguage] = useState(languages[0])
     const [searchQuery, setSearchQuery] = useState("")
+    const [searchResults, setSearchResults] = useState<Spectacle[]>([])
+    const [allSpectacles, setAllSpectacles] = useState<Spectacle[]>([])
+    const [isLoadingSearch, setIsLoadingSearch] = useState(false)
 
 
 
@@ -32,6 +30,30 @@ export function HeaderPage() {
             document.body.style.overflow = 'unset'
         }
     }, [isSearchOpen])
+
+    useEffect(() => {
+        const fetchAllSpectacles = async () => {
+            try {
+                const spectacles = await getSpectacles()
+                setAllSpectacles(spectacles)
+            } catch (error) {
+                console.error("Erreur lors du chargement des spectacles:", error)
+            }
+        }
+        fetchAllSpectacles()
+    }, [])
+
+    useEffect(() => {
+        if (searchQuery.trim()) {
+            const filtered = allSpectacles.filter((spectacle) =>
+                spectacle.titre.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                (spectacle.description && spectacle.description.toLowerCase().includes(searchQuery.toLowerCase()))
+            )
+            setSearchResults(filtered.slice(0, 8))
+        } else {
+            setSearchResults([])
+        }
+    }, [searchQuery, allSpectacles])
 
     const handleSearch = () => {
         console.log("Recherche:", searchQuery)
@@ -189,51 +211,6 @@ export function HeaderPage() {
                             <img src="/ticket.webp" className="w-5 h-5 rotate-[-10deg]" />
                             <span className="text-[12px]">Réserver</span>
                         </Link>
-
-                        <div className="hidden md:block h-6 w-px bg-primary-foreground/20" />
-                        <div className="relative hidden md:block">
-                            <Button
-                                variant="ghost"
-                                onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                                className="text-primary-foreground font-medium hover:bg-primary-foreground/10 cursor-pointer flex items-center gap-2"
-                            >
-                                <span>{selectedLanguage.code}</span>
-                                <span>{selectedLanguage.flag}</span>
-                            </Button>
-
-                            {isLanguageOpen && (
-                                <>
-                                    <div
-                                        className="fixed inset-0 z-40"
-                                        onClick={() => setIsLanguageOpen(false)}
-                                    />
-                                    <div className="absolute top-full right-0 mt-2 bg-white rounded-2xl shadow-2xl overflow-hidden w-48 z-50 animate-slide-down">
-                                        {languages.map((lang) => (
-                                            <button
-                                                key={lang.code}
-                                                onClick={() => {
-                                                    setSelectedLanguage(lang)
-                                                    setIsLanguageOpen(false)
-                                                }}
-                                                className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-colors ${
-                                                    selectedLanguage.code === lang.code
-                                                        ? "bg-[#FF6B6B] text-white"
-                                                        : "text-gray-900 hover:bg-gray-100"
-                                                }`}
-                                            >
-                                                <span className="text-xl">{lang.flag}</span>
-                                                <div>
-                                                    <p className="font-semibold text-sm">{lang.name}</p>
-                                                    <p className={`text-xs ${selectedLanguage.code === lang.code ? "text-white/70" : "text-gray-500"}`}>
-                                                        {lang.code}
-                                                    </p>
-                                                </div>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </>
-                            )}
-                        </div>
                     </div>
                 </div>
             </header>
@@ -268,20 +245,52 @@ export function HeaderPage() {
                         </div>
 
                         <div className="mt-6 bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-xl">
-                            <p className="text-sm font-semibold text-[#FF6B6B] uppercase tracking-wide mb-4">
-                                Recherches populaires
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                                {["Les Misérables", "Notre-Dame de Paris", "Hamlet", "Pat'Patrouille", "Bulle"].map((suggestion) => (
-                                    <button
-                                        key={suggestion}
-                                        onClick={() => setSearchQuery(suggestion)}
-                                        className="px-4 py-2 bg-gray-100 hover:bg-[#FF6B6B] hover:text-white text-gray-700 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
-                                    >
-                                        {suggestion}
-                                    </button>
-                                ))}
-                            </div>
+                            {searchResults.length > 0 ? (
+                                <div>
+                                    <p className="text-sm font-semibold text-[#FF6B6B] uppercase tracking-wide mb-4">
+                                        Résultats ({searchResults.length})
+                                    </p>
+                                    <div className="space-y-2">
+                                        {searchResults.map((spectacle) => (
+                                            <Link
+                                                key={spectacle.id}
+                                                href={`/spectacle/${spectacle.id}`}
+                                                onClick={() => setIsSearchOpen(false)}
+                                            >
+                                                <div className="p-4 bg-gray-50 hover:bg-[#4ECDC4] hover:text-white rounded-lg transition-all duration-300 cursor-pointer group">
+                                                    <p className="font-semibold text-gray-900 group-hover:text-white mb-1">{spectacle.titre}</p>
+                                                    <p className="text-sm text-gray-600 group-hover:text-white/80 line-clamp-1">{spectacle.description || 'Aucune description'}</p>
+                                                    <div className="flex items-center justify-between mt-2 text-xs text-gray-500 group-hover:text-white/70">
+                                                        <span>{spectacle.lieu || 'Lieu à définir'}</span>
+                                                        <span className="font-bold text-[#4ECDC4] group-hover:text-white">{spectacle.prixUnitaire}€</span>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : searchQuery.trim() ? (
+                                <div className="text-center py-8">
+                                    <p className="text-gray-500 font-medium">Aucun spectacle trouvé pour "<span className="text-[#FF6B6B]">{searchQuery}</span>"</p>
+                                </div>
+                            ) : (
+                                <div>
+                                    <p className="text-sm font-semibold text-[#FF6B6B] uppercase tracking-wide mb-4">
+                                        Recherches populaires
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Les Misérables", "Notre-Dame de Paris", "Hamlet", "Pat'Patrouille", "Spectacle"].map((suggestion) => (
+                                            <button
+                                                key={suggestion}
+                                                onClick={() => setSearchQuery(suggestion)}
+                                                className="px-4 py-2 bg-gray-100 hover:bg-[#FF6B6B] hover:text-white text-gray-700 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
+                                            >
+                                                {suggestion}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -339,25 +348,7 @@ export function HeaderPage() {
                             </Link>
                         )}
 
-                        <div className="mt-6 pt-6 border-t border-white/20">
-                            <p className="text-sm text-white/60 mb-3">Langue</p>
-                            <div className="grid grid-cols-2 gap-3">
-                                {languages.map((lang) => (
-                                    <button
-                                        key={lang.code}
-                                        onClick={() => setSelectedLanguage(lang)}
-                                        className={`px-4 py-3 rounded-full flex items-center gap-3 transition-all ${
-                                            selectedLanguage.code === lang.code
-                                                ? "bg-[#FF6B6B] text-white"
-                                                : "bg-white/10 text-white hover:bg-white/20"
-                                        }`}
-                                    >
-                                        <span className="text-xl">{lang.flag}</span>
-                                        <span className="font-medium text-sm">{lang.name}</span>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                        
                     </nav>
                 </div>
             )}

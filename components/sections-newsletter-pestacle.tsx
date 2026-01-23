@@ -1,7 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 
 export default function PestacleNewsletterSection() {
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  if (!isHydrated) {
+    return null;
+  }
+
   return (
     <section className="w-full">
       <div className="relative bg-[#FF6B6B] text-white overflow-hidden">
