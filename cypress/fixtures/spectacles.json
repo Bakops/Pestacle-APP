@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "titre": "Les Misérables",
+    "description": "Le chef-d'œuvre de Victor Hugo mis en scène avec éclat.",
+    "imageUrl": "/les-miserables-musical-theater.jpg",
+    "dateHeure": "2026-04-15T20:00:00",
+    "lieu": "Salle Principale, Paris",
+    "prixUnitaire": 35.0,
+    "placesDisponibles": 120,
+    "capaciteTotale": 500,
+    "statut": "DISPONIBLE"
+  },
+  {
+    "id": 2,
+    "titre": "Hamlet",
+    "description": "Shakespeare revisité par une mise en scène contemporaine.",
+    "imageUrl": "/hamlet-shakespeare-theater.jpg",
+    "dateHeure": "2026-05-10T19:30:00",
+    "lieu": "Grand Théâtre, Paris",
+    "prixUnitaire": 30.0,
+    "placesDisponibles": 0,
+    "capaciteTotale": 800,
+    "statut": "COMPLET"
+  },
+  {
+    "id": 3,
+    "titre": "Chicago",
+    "description": "Jazz, danse et comédie musicale dans toute leur splendeur.",
+    "imageUrl": "/chicago-musical-theater-jazz.jpg",
+    "dateHeure": "2026-06-20T21:00:00",
+    "lieu": "Salle Intime, Paris",
+    "prixUnitaire": 52.0,
+    "placesDisponibles": 45,
+    "capaciteTotale": 150,
+    "statut": "DISPONIBLE"
+  }
+]
